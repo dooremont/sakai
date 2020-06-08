@@ -1,0 +1,8 @@
+files:
+  - source: '*.properties'
+    ignore:
+      - '*.java'
+      - '*.xml'
+      - velocity.properties
+      - '*_*.properties'
+    translation: /%original_path%/%file_name%_%locale_with_underscore%.%file_extension%
