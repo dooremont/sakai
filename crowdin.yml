@@ -5,4 +5,8 @@ files:
       - '*.xml'
       - velocity.properties
       - '*_*.properties'
+      - hibernate.properties
+      - hibernate*.properties
+      - log4j.properties
+      - /.mvn/
     translation: /%original_path%/%file_name%_%locale_with_underscore%.%file_extension%
