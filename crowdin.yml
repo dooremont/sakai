@@ -9,4 +9,6 @@ files:
       - hibernate*.properties
       - log4j.properties
       - /.mvn/
+      - config/
+      - docker/
     translation: /%original_path%/%file_name%_%locale_with_underscore%.%file_extension%
