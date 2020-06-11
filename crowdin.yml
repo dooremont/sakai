@@ -12,4 +12,10 @@ files:
       - config/
       - docker/
       - chat-sql.properties
+      - defaultJdbc.properties
+      - schema-export-ddl.properties
+      - hsqldb.properties
+      - mysql.properties
+      - oracle.properties
+      - kernel/kernel-impl/src/test/resources/
     translation: /%original_path%/%file_name%_%locale_with_underscore%.%file_extension%
