@@ -8,10 +8,10 @@ import "../sakai-group-picker.js";
 import "../sakai-document-viewer.js";
 import { gradableDataMixin } from "./sakai-gradable-data-mixin.js";
 import { Submission } from "./submission.js";
-import "/rubrics-service/webcomponents/rubric-association-requirements.js";
-import "/rubrics-service/webcomponents/sakai-rubric-grading-button.js";
+import "/webcomponents/rubrics/rubric-association-requirements.js";
+import "/webcomponents/rubrics/sakai-rubric-grading-button.js";
 
-class SakaiGrader extends gradableDataMixin(SakaiElement) {
+export class SakaiGrader extends gradableDataMixin(SakaiElement) {
 
   constructor() {
 
@@ -343,7 +343,7 @@ class SakaiGrader extends gradableDataMixin(SakaiElement) {
               <span>${this.assignmentsI18n["allow.resubmit.number"]}:</span>
               <select aria-label="${this.i18n["attempt_selector_label"]}" @change=${e => this.resubmitNumber = e.target.value}>
                 ${Array(10).fill().map((_, i) => html`
-                  <option value="${i + 1}" .selected=${this.submission.allowResubmitNumber == (i + 1)}>${i + 1}</option>
+                  <option value="${i + 1}" .selected=${this.submission.allowResubmitNumber === (i + 1)}>${i + 1}</option>
                 `)}
                 <option value="-1" .selected=${this.submission.allowResubmitNumber === "-1"}>${this.i18n["unlimited"]}</option>
               </select>
@@ -713,7 +713,8 @@ class SakaiGrader extends gradableDataMixin(SakaiElement) {
 
       const numDecimals = number.includes(".") ? number.split(".")[1].length : 0;
 
-      if (numDecimals == 2) {
+      // If the user has highlighted the current entry, they want to replace it.
+      if (numDecimals === 2 && ((e.target.selectionEnd - e.target.selectionStart) < e.target.value.length)) {
         e.preventDefault();
         return false;
       }
@@ -746,6 +747,7 @@ class SakaiGrader extends gradableDataMixin(SakaiElement) {
         this.toggleInlineFeedback(null, true);
       }
       this.submission = this.submissions[currentIndex - 1];
+      this.showResubmission = this.submission.allowResubmitNumber > 0 ? true : false;
     }
   }
 
@@ -756,6 +758,7 @@ class SakaiGrader extends gradableDataMixin(SakaiElement) {
     }
 
     this.submission = this.submissions.find(s => s.id === e.target.value);
+    this.showResubmission = this.submission.allowResubmitNumber > 0 ? true : false;
   }
 
   next() {
@@ -770,6 +773,7 @@ class SakaiGrader extends gradableDataMixin(SakaiElement) {
         this.toggleInlineFeedback(null, true);
       }
       this.submission = this.submissions[currentIndex + 1];
+      this.showResubmission = this.submission.allowResubmitNumber > 0 ? true : false;
     }
   }
 
@@ -898,4 +902,6 @@ class SakaiGrader extends gradableDataMixin(SakaiElement) {
   }
 }
 
-customElements.define("sakai-grader", SakaiGrader);
+if (!customElements.get("sakai-grader")) {
+  customElements.define("sakai-grader", SakaiGrader);
+}

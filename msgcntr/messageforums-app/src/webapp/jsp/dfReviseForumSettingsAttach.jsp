@@ -18,8 +18,8 @@
 	<script src="/messageforums-tool/js/permissions_header.js"></script>
 	<script src="/messageforums-tool/js/datetimepicker.js"></script>
 	<script src="/library/js/lang-datepicker/lang-datepicker.js"></script>
-	<script src="/rubrics-service/webcomponents/sakai-rubrics-utils.js<h:outputText value="#{ForumTool.CDNQuery}" />"></script>
-	<script type="module" src="/rubrics-service/webcomponents/rubric-association-requirements.js<h:outputText value="#{ForumTool.CDNQuery}" />"></script>
+	<script src="/webcomponents/rubrics/sakai-rubrics-utils.js<h:outputText value="#{ForumTool.CDNQuery}" />"></script>
+	<script type="module" src="/webcomponents/rubrics/rubric-association-requirements.js<h:outputText value="#{ForumTool.CDNQuery}" />"></script>
 	<link href="/library/webjars/jquery-ui/1.12.1/jquery-ui.min.css" rel="stylesheet" type="text/css" />
 	<%
 	  	String thisId = request.getParameter("panel");
@@ -94,6 +94,10 @@
 						$(this).attr('title', $(this).html());
 					});
 				}
+
+				$('#revise\\:forum_locked, #revise\\:moderated, #revise\\:postFirst').each(function() {
+					$(this).attr('aria-labelledby', 'forum_posting_head ' + $(this).attr('id') + '_label');
+				});
 
 				$('.displayMore').click(function(e){
 					e.preventDefault();
@@ -239,7 +243,7 @@
 					/>
 			</h:panelGroup>
 			<%--general posting  forum settings --%>
-			<h2>
+			<h2 id="forum_posting_head">
 				<h:outputText value="#{msgs.cdfm_forum_posting}" />
 			</h2>
 
@@ -247,19 +251,19 @@
 					<h:selectBooleanCheckbox
 						title="ForumLocked" value="#{ForumTool.selectedForum.forumLocked}"
 						id="forum_locked">
-					</h:selectBooleanCheckbox> <h:outputLabel for="forum_locked" value="#{msgs.cdfm_lock_forum}" />
+					</h:selectBooleanCheckbox> <h:outputLabel id="forum_locked_label" value="#{msgs.cdfm_lock_forum}" />
 				</p>
 				<p class="checkbox">
 					<h:selectBooleanCheckbox
 						title="Moderated" value="#{ForumTool.selectedForum.forumModerated}"
 						id="moderated">
-					</h:selectBooleanCheckbox> <h:outputLabel for="moderated" value="#{msgs.cdfm_moderate_forum}" />
+					</h:selectBooleanCheckbox> <h:outputLabel id="moderated_label" value="#{msgs.cdfm_moderate_forum}" />
 				</p>
 				<p class="checkbox">
 					<h:selectBooleanCheckbox
 						title="postFirst" value="#{ForumTool.selectedForum.forumPostFirst}"
 						id="postFirst">
-					</h:selectBooleanCheckbox> <h:outputLabel for="postFirst" value="#{msgs.cdfm_postFirst}" />
+					</h:selectBooleanCheckbox> <h:outputLabel id="postFirst_label" value="#{msgs.cdfm_postFirst}" />
 				</p>
 
 			<h2><h:outputText  value="#{msgs.cdfm_forum_availability}" /></h2>
