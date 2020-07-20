@@ -18,4 +18,43 @@ files:
       - oracle.properties
       - kernel/kernel-impl/src/test/resources/
       - config/configuration/
+      - application.properties
+      - content_type_classes.properties
+      - UserAttributeRoleProvider.properties
+      - swift.properties
+      - RepositoryManager.properties
+      - content_type_extensions.properties
+      - commons-logging.properties
+      - project-uno.properties
+      - config.properties
+      - repositoryStubImpl.properties
+      - chat-sql.properties
+      - i18nedit.properties
+      - SiteTypeProvider.properties
+      - siteassociation-impl.properties
+      - colors.properties
+      - simplelog.properties
+      - signupConfig.properties
+      - Config.properties
+      - castor.properties
+      - matrix-views.properties
+      - views.properties
+      - test-context.properties
+      - system.properties
+      - quartz.properties
+      - project.properties
+      - database.properties
+      - content_type_images.properties
+      - siteassociation-impl.properties
+      - sakai.db.properties
+      - jmeter.properties
+      - experimental.sakai.properties
+      - demo.sakai.properties
+      - default.sakai.properties
+      - auto.sakai.properties
+      - security.properties
+      - sakai.nosearch.properties
+      - sakai.es.properties
+      - velocity.properties
+      - defaultJdbc.properties
     translation: /%original_path%/%file_name%_%locale_with_underscore%.%file_extension%
